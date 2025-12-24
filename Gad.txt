@@ -1,0 +1,7 @@
+D’accord. Voici une **version orientée architecture**, neutre, factuelle, sans discours sécurité appuyé, **typique d’un document d’architecture applicative** :
+
+> **Intégrité des documents**
+> L’architecture de la GED intègre un mécanisme de contrôle d’intégrité basé sur le calcul d’un checksum lors de l’import des documents. Le checksum est généré côté backend à partir du contenu binaire du fichier, avant tout traitement ou stockage, en utilisant l’algorithme SHA-256. Cette empreinte est persistée en base de données et associée aux métadonnées du document. Elle constitue la référence permettant de vérifier l’intégrité du fichier tout au long de son cycle de vie, notamment lors des opérations d’accès, de restitution ou de contrôle, 
+----et supporte également les mécanismes de détection de doublons et de gestion du versioning.
+
+Si tu veux, je peux l’**encore simplifier** ou l’**adapter au formalisme de ton schéma d’architecture global**.
