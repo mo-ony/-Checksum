@@ -1,0 +1,70 @@
+
+PROCÈS-VERBAL D’OPÉRATIONServeur : SYRTA PROD BDD 310Date : [à compléter]Rédigé par : [Nom / Fonction]Objet : Mise en place du chiffrement tablespaces et synchronisation avec Standby Database
+
+1. Contexte et objectif
+L’opération vise à sécuriser les tablespaces existants sur la base de données SYRTA PROD BDD 310 via chiffrement TDE (Transparent Data Encryption), tout en assurant la continuité et la synchronisation avec la standby database.
+
+2. Étapes de l’opération
+2.1. Préparation
+Informer les équipes OPS de l’arrêt temporaire de la plateforme SYRTA pour intervention.
+2.2. Arrêt du service applicatif
+Arrêt de Tomcat 309 sur le serveur PROD.
+2.3. Vérification de la synchronisation
+Vérification des logs pour s’assurer que tous les fichiers de redo sont à jour.
+Exécution de la commande :ALTER SYSTEM SWITCH LOGFILE;
+
+2.4. Snapshot des serveurs
+Création de snapshots sur :
+Serveur PROD 310
+Serveur Standby 510
+2.5. Configuration du Wallet Oracle
+Création du dossier Wallet :D:\APP\ORACLE\WALLET\tde
+Vérification du chemin correct via :SELECT wrl_parameter FROM v$encryption_wallet;
+
+Modification du fichier sqlnet.ora pour spécifier le chemin du Wallet :
+Serveur 3310 : C:\APP\network\admin\sqlnet.ora
+Serveur 310 : D:\APP\ORACLE\oracle_19_3_bin\network\admin\sqlnet.ora
+ENCRYPTION_WALLET_LOCATION =
+ (SOURCE =
+  (METHOD = FILE)
+  (METHOD_DATA =
+   (DIRECTORY = D:\APP\ORACLE\WALLET\tde)
+  )
+ )
+
+Création du Wallet en tant que SYSDBA :ADMINISTER KEY MANAGEMENT CREATE KEYSTORE 'D:\APP\ORACLE\WALLET\tde' IDENTIFIED BY "ops8CTR_V";
+
+Ouverture du Wallet :ADMINISTER KEY MANAGEMENT SET KEYSTORE OPEN IDENTIFIED BY "ops8CTR_V";
+
+Création de la clé maître de chiffrement :ADMINISTER KEY MANAGEMENT SET KEY IDENTIFIED BY "ops8CTR_V" WITH BACKUP;
+
+Activation du Wallet en auto-login :cd D:/APP/ORACLE/diag/rdbms/syrtadb/syrtadb/wallet
+orapki wallet create -wallet . -auto_login
+
+2.6. Chiffrement des tablespaces existants
+Lister les tablespaces :SELECT tablespace_name, encrypted FROM dba_tablespaces;
+
+Commande pour chiffrer un tablespace :ALTER TABLESPACE SYRTA_DATA ENCRYPTION ONLINE ENCRYPT;
+
+Commande pour déchiffrer (si nécessaire) :ALTER TABLESPACE SYRTA_DATA DECRYPT;
+
+2.7. Synchronisation avec la Standby Database
+Mettre la standby database en suspension pour maintenance :ALTER DATABASE RECOVER MANAGED STANDBY DATABASE CANCEL;
+
+Transporter le dossier Wallet et mettre à jour le sqlnet.ora sur le serveur 510.
+Relancer la standby database :ALTER DATABASE RECOVER MANAGED STANDBY DATABASE USING CURRENT LOGFILE DISCONNECT;
+
+2.8. Vérification finale
+Switch logfiles :ALTER SYSTEM SWITCH LOGFILE;
+
+Vérification des tablespaces chiffrés :SELECT * FROM v$encrypted_tablespaces;
+
+Redémarrage de Tomcat 309.
+Tests de la plateforme pour s’assurer du bon fonctionnement.
+
+3. Réserve
+Suite au redémarrage de la VM, le Wallet ne s’ouvre pas automatiquement. Intervention manuelle requise pour réouverture si nécessaire.
+
+4. Conclusion
+L’opération s’est déroulée conformément au plan établi. Les tablespaces de SYRTA PROD BDD 310 sont désormais chiffrés et synchronisés avec la standby database. La plateforme est fonctionnelle et prête pour reprise des activités.
+
