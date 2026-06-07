@@ -92,8 +92,12 @@ OPEN_MODE     : MOUNTED
 
 
 7.2 Arrêt du processus de récupération (MRP)
+
+
 RECOVER MANAGED STANDBY DATABASE CANCEL;
 Résultat :
+
+
 Media recovery complete.
  
 ⸻
@@ -101,14 +105,20 @@ Media recovery complete.
 
 
 
+
 7.3 Finalisation de l’application des journaux
+
+
 ALTER DATABASE RECOVER MANAGED STANDBY DATABASE FINISH;
- 
+
+ 
 ⸻
  
 
 
 7.4 Activation de la base standby en base primaire
+
+
 ALTER DATABASE ACTIVATE STANDBY DATABASE;
  
 ⸻
@@ -116,6 +126,8 @@ ALTER DATABASE ACTIVATE STANDBY DATABASE;
 
 
 7.5 Ouverture de la base en production
+
+
 ALTER DATABASE OPEN;
  
 ⸻
@@ -124,12 +136,17 @@ ALTER DATABASE OPEN;
 
 
 7.6 Vérification finale
+
+
 SELECT name, open_mode, database_role FROM v$database;
+
+
 Résultat attendu :
 DATABASE_ROLE : PRIMARY
 OPEN_MODE     : READ WRITE
  
 ⸻
+
 
 
 
@@ -144,7 +161,11 @@ La base SYRTA dispose d’une base standby synchronisée en temps réel, sans Da
 
  
 8.1 Vérification du rôle de la base standby SYRTA
+
+
 SELECT name, open_mode, database_role FROM v$database;
+
+
 Résultat attendu :
 DATABASE_ROLE : PHYSICAL STANDBY
 OPEN_MODE     : MOUNTED
@@ -155,6 +176,8 @@ OPEN_MODE     : MOUNTED
 
  
 8.2 Arrêt du processus de récupération (MRP)
+
+
 RECOVER MANAGED STANDBY DATABASE CANCEL;
  
 ⸻
@@ -162,13 +185,17 @@ RECOVER MANAGED STANDBY DATABASE CANCEL;
 
  
 8.3 Finalisation de l’application des redo logs
+
+
 ALTER DATABASE RECOVER MANAGED STANDBY DATABASE FINISH;
  
 ⸻
 
 
- 
+
 8.4 Activation de la base standby SYRTA
+
+
 ALTER DATABASE ACTIVATE STANDBY DATABASE;
  
 ⸻
@@ -176,6 +203,8 @@ ALTER DATABASE ACTIVATE STANDBY DATABASE;
 
  
 8.5 Ouverture de la base en mode production
+
+
 ALTER DATABASE OPEN;
 
 
@@ -183,7 +212,11 @@ ALTER DATABASE OPEN;
 ⸻
  
 8.6 Vérification post-bascule
+
+
 SELECT name, open_mode, database_role FROM v$database;
+
+
 Résultat attendu :
 DATABASE_ROLE : PRIMARY
 OPEN_MODE     : READ WRITE
