@@ -78,14 +78,19 @@ SYRTA BDD	Standby	algs07200510	Temps réel	DBA
 
 
 7. Procédure DBA – Bascule ODS (Data Guard)
+
 7.1 Vérification du rôle et de l’état de la base standby
+
 SELECT name, open_mode, database_role FROM v$database;
+
 Résultat attendu :
 DATABASE_ROLE : PHYSICAL STANDBY
 OPEN_MODE     : MOUNTED
  
 ⸻
  
+
+
 7.2 Arrêt du processus de récupération (MRP)
 RECOVER MANAGED STANDBY DATABASE CANCEL;
 Résultat :
@@ -93,21 +98,31 @@ Media recovery complete.
  
 ⸻
  
+
+
+
 7.3 Finalisation de l’application des journaux
 ALTER DATABASE RECOVER MANAGED STANDBY DATABASE FINISH;
  
 ⸻
  
+
+
 7.4 Activation de la base standby en base primaire
 ALTER DATABASE ACTIVATE STANDBY DATABASE;
  
 ⸻
  
+
+
 7.5 Ouverture de la base en production
 ALTER DATABASE OPEN;
  
 ⸻
  
+
+
+
 7.6 Vérification finale
 SELECT name, open_mode, database_role FROM v$database;
 Résultat attendu :
@@ -115,12 +130,19 @@ DATABASE_ROLE : PRIMARY
 OPEN_MODE     : READ WRITE
  
 ⸻
- 
+
+
+
+
+ 
 8. Procédure DBA – Bascule SYRTA (Standby Database)
 La base SYRTA dispose d’une base standby synchronisée en temps réel, sans Data Guard Broker. La bascule est réalisée manuellement par le DBA.
  
 ⸻
- 
+
+
+
+ 
 8.1 Vérification du rôle de la base standby SYRTA
 SELECT name, open_mode, database_role FROM v$database;
 Résultat attendu :
@@ -128,25 +150,36 @@ DATABASE_ROLE : PHYSICAL STANDBY
 OPEN_MODE     : MOUNTED
  
 ⸻
- 
+
+
+
+ 
 8.2 Arrêt du processus de récupération (MRP)
 RECOVER MANAGED STANDBY DATABASE CANCEL;
  
 ⸻
- 
+
+
+ 
 8.3 Finalisation de l’application des redo logs
 ALTER DATABASE RECOVER MANAGED STANDBY DATABASE FINISH;
  
 ⸻
- 
+
+
+ 
 8.4 Activation de la base standby SYRTA
 ALTER DATABASE ACTIVATE STANDBY DATABASE;
  
 ⸻
- 
+
+
+ 
 8.5 Ouverture de la base en mode production
 ALTER DATABASE OPEN;
- 
+
+
+ 
 ⸻
  
 8.6 Vérification post-bascule
@@ -156,7 +189,10 @@ DATABASE_ROLE : PRIMARY
 OPEN_MODE     : READ WRITE
  
 ⸻
- 
+
+
+
+ 
 9. Validation applicative post-bascule
 * Redirection des flux applicatifs vers le site DATA ROOM Cheraga
 * Vérification des URLs :
@@ -167,13 +203,20 @@ OPEN_MODE     : READ WRITE
 📎 Captures navigateur jointes
  
 ⸻
- 
+
+
+ 
 10. Procédure de Retour à la Normale (Failback)
 10.1 Objectif
 Restaurer l’architecture nominale sur le site principal DATA ROOM Bab Ezzouar, tout en garantissant l’intégrité des données et la continuité applicative.
- 
+
+
+ 
 ⸻
- 
+
+
+
+ 
 10.2 Restauration des serveurs à partir des snapshots
 Actions réalisées :
 * Restauration des snapshots des serveurs BDD principaux :
