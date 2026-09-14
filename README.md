@@ -1,67 +1,33 @@
-Bien sûr. Voici une version plus synthétique, structurée comme un vrai compte rendu de suivi projet, avec un focus sur les priorités, actions et prochaines étapes.
+Voici une version courte, structurée et directement exploitable en email, avec un ton de suivi projet.
 
-Compte rendu – Suivi des projets IT
+Bonjour l’équipe,
 
-Objet : Suivi de l’avancement, priorisation et prochaines étapes
+Ci-dessous le compte rendu du point hebdomadaire d’hier :
 
-1. ODS
+1. Projets & contrats
 
-Priorités
+* Hébergement ISSAL : étude d’une optimisation de l’hébergement (hosting dédié mutualisé et rationalisation des serveurs de développement), avec un objectif de réduction des coûts d’environ 50 %. Septembre constitue la fenêtre pour formuler la demande d’évolution contractuelle. Mail envoyé à Idir (Juridique) à l’issue de la réunion.
+* Takaful & Prévoyance Santé PME : les deux projets pourraient s’appuyer sur le code source récupéré auprès du fournisseur. Un arbitrage des priorités est à réaliser au regard de la capacité IT.
+* GED : extension envisagée de la GED existante à l’ensemble des départements. La faisabilité sera étudiée après analyse de l’EDB.
 
-* Nouveaux produits : priorité donnée à l’intégration des nouveaux produits.
-    * Prochaine cible : ADE BUS, de la phase de chargement jusqu’à la réassurance.
-    * Démarrage des travaux sur RIHLATI avec organisation d’ateliers.
-    * Étudier la standardisation du processus d’intégration des produits à travers un modèle type.
-* Automatisation :
-    * Automatiser la consommation des produits, sur le modèle de SYBAL.
-    * Revoir la gestion des CRD null pour permettre leur traitement automatique.
-    * Mettre en place les notifications à la clôture selon les deux déclencheurs identifiés.
+2. Ressources & infrastructure
 
-Autres actions
+* Stagiaires développement : fiches de postes préparées par Fatima.
+* Réseau : demande d’augmentation du débit entre le site principal et le site de repli, de 10 Mb/s à 50 Mb/s.
 
-* Tableaux d’amortissement : revoir les modalités de calcul avec les actuaires.
-* CTP / SAHTI : relancer les travaux d’assainissement afin de réduire les non-parvenus.
-* Vérifier la possibilité de résiliation automatique pour CTP et SAHTI.
-* Force Task P4 : action terminée.
+3. Valorisation des réalisations IT
 
-Capacité IT
+Préparation d’une présentation des principales réalisations de l’année, notamment :
 
-* La charge importante liée au support de production limite la capacité dédiée aux projets.
-* Intégrer dans le suivi de charge les activités transverses : PCA, vulnérabilités, GKSP, plans d’actions et activités SI.
-* Étudier le renforcement de l’équipe par 1 à 2 stagiaires.
-* Étudier la mise en place d’un environnement cloné de développement/test.
+* réduction des coûts/licences (~6 000 €) ;
+* fonctionnalités et apports de SYRTA ;
+* réalisation et évolution de la GED ;
+* renforcement de l’autonomie interne sur Data Guard et la résolution des incidents ;
+* continuité et stabilité des services IT sur l’année.
 
-⸻
+Le format reste à définir : Town Hall ou point dédié.
 
-2. SYRTA
+Bonne journée,
+Fatima
 
-Priorité
-
-* Reprise du stock de migration GYPSY : travaux en cours.
-
-Prochaines étapes
-
-* Identifier progressivement les données/colonnes manquantes lors de la création des dossiers.
-* Compléter le canevas fourni par les opérations.
-* Transmettre aux opérations les éléments consolidés pour poursuivre la reprise.
-
-⸻
-
-3. GED
-
-Action
-
-* Identifier les éventuels manquements et besoins d’évolution.
-* Étudier la possibilité de mobiliser des stagiaires pour accompagner cette analyse.
-
-⸻
-
-4. Orientations principales
-
-* Prioriser les nouveaux produits et leur standardisation.
-* Accélérer l’automatisation des traitements récurrents.
-* Mieux maîtriser la charge support vs. projets.
-* Renforcer ponctuellement la capacité IT.
-* Formaliser les actions et leur avancement lors des prochains points de suivi.
-
-￼ Je peux aussi te faire une version encore plus “chef de projet / comité de pilotage”, sous forme de tableau Projet | Priorité | Action | Responsable | Échéance | Statut, qui serait très pratique pour les prochains suivis.
+Si tu veux, je peux aussi te faire ￼ une version encore plus “corporate / Comité de pilotage”, avec uniquement Sujet → Décision → Action, sur une dizaine de lignes.
