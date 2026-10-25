@@ -1,3 +1,34 @@
+Procès-verbal de réunion
+
+Objet : Suivi des vulnérabilités et planification des tests PCA
+
+1. Suivi des travaux de traitement des vulnérabilités
+
+Les travaux de traitement des vulnérabilités sont en cours. Les points suivants ont été abordés :
+
+* Apache Tomcat : la mise à niveau a été réalisée.
+* Authentification SESAME / WSO2 : les fichiers liés à cette solution ont été supprimés, celle-ci n’étant pas utilisée en production.
+* Spring Web : les travaux de mise à niveau sont en cours.
+* JasperReports : les travaux de mise à niveau des composants concernés sont également en cours.
+
+2. Planification des tests PCA
+
+Il a été convenu de planifier les tests PCA selon le calendrier suivant :
+
+Test	Date prévue	Participants / Périmètre
+Test de travail à distance	08/11/2026	Ensemble des employés
+Test de restauration à une date antérieure d’une semaine à l’aide de Backup Exec	Jeudi 29/10/2026	Selon le périmètre de restauration défini
+Test de reprise d’activité sur le site de repli de Cheraga	03/11/2026	Nachida et Isma
+
+3. Prochaines étapes
+
+Les actions convenues consistent à :
+
+* Poursuivre les travaux de mise à niveau de Spring Web et des composants JasperReports.
+* Réaliser les tests PCA selon le calendrier convenu.
+* Vérifier les résultats des tests et identifier les éventuelles actions correctives à mettre en œuvre.
+
+
 Bien sûr. Je te conseille de garder des réponses courtes à l’oral, très factuelles et surtout de ne pas donner l’impression que tu cherches à te justifier.
 
 1. Si elle demande : « Peux-tu me faire un point rapide sur l’avancement ? »
